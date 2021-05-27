@@ -21,8 +21,8 @@ SET row_security = off;
 --
 
 COPY public.conference (id, city, year, is_international) FROM stdin;
-1	Lyon	2018	t
-2	Paris	2019	f
+2	Lille	2018	f
+1	Lyon	2019	t
 \.
 
 
@@ -39,7 +39,8 @@ COPY public.comment (id, conference_id, author, text, email, created_at, photo_f
 --
 
 COPY public.doctrine_migration_versions (version, executed_at, execution_time) FROM stdin;
-DoctrineMigrations\\Version20210525233911	2021-05-25 23:40:48	122
+DoctrineMigrations\\Version20210525233911	2021-05-26 19:56:00	62
+DoctrineMigrations\\Version20210527104007	2021-05-27 10:40:18	18
 \.
 
 
@@ -47,7 +48,7 @@ DoctrineMigrations\\Version20210525233911	2021-05-25 23:40:48	122
 -- Name: comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: main
 --
 
-SELECT pg_catalog.setval('public.comment_id_seq', 1, false);
+SELECT pg_catalog.setval('public.comment_id_seq', 2, true);
 
 
 --

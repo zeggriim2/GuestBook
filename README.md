@@ -38,5 +38,5 @@ $ symfony run pg_dump --data-only > dump.sql
 Et restaurer les données :
 
 ```bash
-$ symfony run psql < dump.sql
+    $ symfony run psql < dump.sql
 ```
