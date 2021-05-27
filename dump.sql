@@ -31,6 +31,10 @@ COPY public.conference (id, city, year, is_international) FROM stdin;
 --
 
 COPY public.comment (id, conference_id, author, text, email, created_at, photo_filename) FROM stdin;
+3	1	Zeggriim	gtqzgreg	zeggriim@gmail.com	2021-05-27 13:35:00	\N
+4	2	Zeggriim	qajgrieogaoeh	zeggriim@hotmail.fr	2021-05-27 16:20:00	\N
+5	1	Clem	aergrtharth	clem@hotmail.fr	2021-05-27 16:20:00	\N
+6	1	Lilian	arehjgoaher	lilian@hotmail.fr	2021-05-28 16:21:00	\N
 \.
 
 
@@ -48,7 +52,7 @@ DoctrineMigrations\\Version20210527104007	2021-05-27 10:40:18	18
 -- Name: comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: main
 --
 
-SELECT pg_catalog.setval('public.comment_id_seq', 2, true);
+SELECT pg_catalog.setval('public.comment_id_seq', 6, true);
 
 
 --
