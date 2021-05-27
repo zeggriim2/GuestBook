@@ -25,14 +25,14 @@ class ConferenceController extends AbstractController
 
 
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="homepage")
      * @param ConferenceRepository $conferenceRepository
      * @return Response
      */
     public function index(ConferenceRepository $conferenceRepository): Response
     {
         return new Response($this->twig->render('conference/index.html.twig', [
-            'conferences' => $conferenceRepository->findAll(),
+//            'conferences' => $conferenceRepository->findAll(),
         ]));
     }
 
@@ -40,21 +40,23 @@ class ConferenceController extends AbstractController
      * @param Request $request
      * @param Conference $conference
      * @param CommentRepository $commentRepository
+     * @param ConferenceRepository $conferenceRepository
      * @return Response
      * @Route("/conference/{id}", name="conference")
      */
-     public function show(Request $request, Conference $conference, CommentRepository $commentRepository): Response
+     public function show(Request $request, Conference $conference, CommentRepository $commentRepository, ConferenceRepository $conferenceRepository): Response
      {
          $offset = max(0, $request->query->getInt('offset', 0));
          $paginator = $commentRepository->getCommentPaginator($conference, $offset);
 
 
-         return new Response($this->twig->render('conference/show.html.twig', [
-             'conference'   => $conference,
-//             'comments'     => $commentRepository->findBy(['conference' => $conference], ['createdAt' => 'DESC']),
-             'comments'     => $paginator,
-             'previous'     => $offset - CommentRepository::PAGINATOR_PER_PAGE,
-             'next'         => min(count($paginator), $offset + CommentRepository::PAGINATOR_PER_PAGE),
-         ]));
+        return new Response($this->twig->render('conference/show.html.twig', [
+            'conference'    => $conference,
+//            'conferences'   => $conferenceRepository->findAll(),
+        //             'comments'     => $commentRepository->findBy(['conference' => $conference], ['createdAt' => 'DESC']),
+            'comments'      => $paginator,
+            'previous'      => $offset - CommentRepository::PAGINATOR_PER_PAGE,
+            'next'          => min(count($paginator), $offset + CommentRepository::PAGINATOR_PER_PAGE),
+        ]));
     }
 }
