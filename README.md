@@ -32,11 +32,21 @@ Utilisez pg_dump pour sauvegarder les données de la base :
 
 
 ```bash
-$ symfony run pg_dump --data-only > dump.sql
+$ symfony run pg_dump --data-only > dump2.sql
 ```
 
 Et restaurer les données :
 
 ```bash
-    $ symfony run psql < dump.sql
+    $ symfony run psql < dump2.sql
+```
+
+
+
+----------------------
+
+Pour stocker les sessions en base de données, modifiez la configuration session.handler_id pour pointer sur le DSN de la base de données :
+```
+-        handler_id: null
++        handler_id: '%env(DATABASE_URL)%'
 ```
